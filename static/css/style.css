@@ -10,3 +10,24 @@
     color: black;
     font-weight: bold;
 }
+
+.thin {
+    font-weight: 300;
+}
+
+.light-bg {
+    background-color: #fff;
+}
+
+.dark-bg {
+    background-color: #800080;
+}
+
+.main-bg {
+    background-color: #F9FAFC;
+}
+
+.card {
+    border: none;
+    background-color: transparent;
+}
