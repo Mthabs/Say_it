@@ -36,10 +36,32 @@
     <!-- Navigation -->
 
     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
-      <div class="container-fluid">
-        <!-- Logo -->
-        <div class="logo">Say<span>it</span></div>
-      </div>
+        <div class="container-fluid">
+            <!-- Logo -->
+            <div class="logo">Say<span>it</span></div>
+                    <!-- Other Navbar Items -->
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <!-- Using ms-auto to push the content to the right -->
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_signup' %}">Sign up</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>        
     </nav>
     <main class="flex-shrink-0 main-bg">
       {% block content %}
