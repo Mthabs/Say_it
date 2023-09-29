@@ -21,12 +21,47 @@
     </div>
 </div>
 <div>
-    <div>
-
-    </div>
-    <div>
-
-    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col card mb-4  mt-3 left  top">
+                <div class="card-body">
+                    <!-- The post content goes inside the card-text. -->
+                    <!-- Use the | safe filter inside the template tags -->
+                    <p class="card-text ">
+                        {{ post.content | safe }}
+                    </p>
+                    <div class="row">
+                        <div class="col-2">
+                            <!-- Merging both col-1 into a single col-2 for better spacing -->
+                            {% if user.is_authenticated %}
+                            <form class="d-inline" action="{% url 'post_like' post.slug %}" method="POST">
+                                {% csrf_token %}
+                                {% if liked %}
+                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like">Like</button>
+                                {% else %}
+                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like">Like</button>
+                                {% endif %}
+                            </form>
+                            {% else %}
+                            <button class="btn-like" disabled>Like</button> <!-- Disabled button for non-authenticated users -->
+                            {% endif %}
+                            <span>{{ post.number_of_likes }} likes</span>  
+                        </div>
+                        <div class="col-2">
+                            <!-- Adjusting to col-2 for consistency -->
+                            {% with comments.count as total_comments %}
+                            <span>{{ total_comments }} comments</span>
+                            {% endwith %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <hr>
+            </div>
+        </div>
     <div class="row">
         <div class="col-md-8 card mb-4  mt-3 ">
             <h3>Comments:</h3>
